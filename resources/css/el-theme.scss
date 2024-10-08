@@ -1,0 +1,29 @@
+:root {
+    --el-color-primary: #356bb3 !important;
+
+    // --el-color-success: #4cbc32 !important;
+    // --el-color-warning: #ffaf45 !important;
+    // --el-color-danger: #e02c41 !important;
+    // --el-color-info: #607d8b !important;
+    // --el-color-info-light-3: #90a4ae !important;
+    // --el-color-info-light-5: #eceff1 !important;
+
+    // --el-text-color-secondary: #606266 !important;
+}
+
+.example-showcase .el-loading-mask {
+    z-index: 9;
+}
+
+.el-menu-item.is-active {
+background-color: #356bb3 !important;
+    color: white !important;
+
+    &:hover {
+        background-color: #356bb3 !important;
+    }
+}
+.el-sub-menu__title:hover,
+.el-menu-item:hover {
+    background-color: #cfd8dc !important;
+}
