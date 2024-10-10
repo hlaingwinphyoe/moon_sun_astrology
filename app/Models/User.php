@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,7 +27,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nickname',
+        'phone',
         'email',
+        'dob',
+        'social_link',
+        'day_id',
+        'gender_id',
+        'role_id',
+        'email_verified_at',
+        'profile_photo_path',
+        'disabled',
         'password',
     ];
 
@@ -66,6 +78,16 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    // helper function
+    protected function profile(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $value, array $attributes) {
+                return $attributes['profile_photo_path'] !== null ? '/storage/' . $attributes['profile_photo_path'] : '';
+            }
+        );
     }
 
     // scope function

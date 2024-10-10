@@ -25,20 +25,43 @@
         <InputError class="mt-2" :message="$page.props.errors.name" />
       </el-form-item>
       <el-form-item
-        label="Price"
-        prop="price"
+        label="Role"
         :rules="[
           {
             required: true,
-            message: 'Price is required',
+            message: 'Role is required',
             trigger: 'blur',
           },
         ]"
       >
-        <el-input type="number" min="0" v-model="form.price" />
-        <InputError class="mt-2" :message="$page.props.errors.price" />
+        <el-select
+          v-model="form.role"
+          placeholder="Select"
+          clearable
+          @clear="form.role = ''"
+        >
+          <el-option
+            v-for="item in roles"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+          />
+        </el-select>
+        <InputError class="mt-2" :message="$page.props.errors.role" />
       </el-form-item>
-      <el-form-item label="Image">
+      <el-form-item label="Email" prop="email">
+        <el-input type="email" v-model="form.email" />
+        <InputError class="mt-2" :message="$page.props.errors.email" />
+      </el-form-item>
+      <el-form-item label="Phone" prop="phone">
+        <el-input v-model="form.phone" />
+        <InputError class="mt-2" :message="$page.props.errors.phone" />
+      </el-form-item>
+      <el-form-item label="Social Link" prop="social">
+        <el-input v-model="form.social" />
+        <InputError class="mt-2" :message="$page.props.errors.social" />
+      </el-form-item>
+      <el-form-item label="Profile">
         <div class="relative group">
           <img
             v-show="imgSrc != ''"
@@ -93,7 +116,7 @@ import InputError from "@/Components/InputError.vue";
 import { Plus, Delete } from "@element-plus/icons-vue";
 import { router } from "@inertiajs/vue3";
 export default {
-  props: ["show", "title", "data"],
+  props: ["show", "title", "data", "roles"],
   components: {
     InputError,
     Plus,
@@ -103,12 +126,14 @@ export default {
   setup(props, context) {
     const state = reactive({
       dialogTitle: "",
-      isLoading: false,
-      virtualForm: new FormData(),
       imgSrc: "",
+      virtualForm: new FormData(),
       form: {
         name: "",
-        price: "",
+        role: "",
+        phone: "",
+        email: "",
+        social_link: "",
       },
     });
 
@@ -119,36 +144,33 @@ export default {
       formRef.validate((valid) => {
         if (valid) {
           state.virtualForm.append("name", state.form.name);
-          state.virtualForm.append("price", state.form.price);
+          state.virtualForm.append("role", state.form.role);
+          state.virtualForm.append("phone", state.form.phone);
+          state.virtualForm.append("email", state.form.email);
+          state.virtualForm.append("social_link", state.form.social_link);
           if (state.dialogTitle === "Create") {
-            router.post(route("admin.items.store"), state.virtualForm, {
+            router.post(route("admin.staffs.store"), state.virtualForm, {
               onSuccess: (page) => {
-                state.isLoading = false;
                 ElMessage.success(page.props.flash.success);
-                formRef.resetFields();
                 closeDialog(formRef);
               },
               onError: () => {
                 state.isLoading = false;
-                formRef.resetFields();
                 ElMessage.error(page.error);
               },
             });
           } else {
             state.virtualForm.append("_method", "patch");
             router.post(
-              route("admin.items.update", props.data.id),
+              route("admin.staffs.update", props.data.id),
               state.virtualForm,
               {
                 onSuccess: (page) => {
-                  state.isLoading = false;
-                  ElMessage.success(page.props.flash.success);
-                  formRef.resetFields();
                   closeDialog(formRef);
+                  ElMessage.success(page.props.flash.success);
                 },
-                onError: (page) => {
+                onError: () => {
                   state.isLoading = false;
-                  formRef.resetFields();
                   ElMessage.error(page.error);
                 },
               }
@@ -180,23 +202,26 @@ export default {
     };
 
     const closeDialog = (formRef) => {
+      state.isLoading = false;
       formRef.resetFields();
       context.emit("closed");
-    };
-
-    const handleRemove = (uploadFile) => {
-      router.delete(route("admin.items.destroy-media", uploadFile.id), {
-        onSuccess: () => {
-          state.imgSrc = "";
-        },
-      });
     };
 
     const openDialog = () => {
       state.dialogTitle = props.title;
       state.form.name = props.data.name ?? "";
-      state.form.price = props.data.price ?? "";
-      state.imgSrc = props.data.image ?? "";
+      state.form.role = props.data.role_id ?? "";
+      state.form.phone = props.data.phone ?? "";
+      state.form.email = props.data.email ?? "";
+      state.imgSrc = props.data.profile ?? "";
+    };
+
+    const handleRemove = (uploadFile) => {
+      router.delete(route("admin.staffs.destroy-media", uploadFile.id), {
+        onSuccess: () => {
+          state.imgSrc = "";
+        },
+      });
     };
 
     return {

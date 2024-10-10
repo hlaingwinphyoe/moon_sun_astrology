@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\StaffController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -46,5 +48,13 @@ Route::middleware([
         Route::get('/profile', 'edit')->name('edit');
         Route::patch('/profile', 'update')->name('update');
         Route::delete('/profile', 'destroy')->name('destroy');
+    });
+
+    // staff & roles
+    Route::resource('staffs', StaffController::class)->except(['create', 'show', 'edit']);
+    Route::resource('roles', RoleController::class)->except(['create', 'show', 'edit']);
+    Route::controller(StaffController::class)->prefix('/staffs')->name('staffs.')->group(function () {
+        Route::patch('/{staff}/change-password', 'changePassword')->name('change-password');
+        Route::delete('/{staff}/destroy-media', 'destroyMedia')->name('destroy-media');
     });
 });
