@@ -31,7 +31,6 @@
 
     <!-- Core Style Css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
 </head>
 
 <body class="home-startup main-bg">

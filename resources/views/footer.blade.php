@@ -33,10 +33,12 @@
                     </div>
                     <ul class="rest social-text">
                         <li>
-                            <a href="https://www.facebook.com/tarotNmyanmarastrology?mibextid=LQQJ4d" target="_blank">Facebook</a>
+                            <a href="https://www.facebook.com/tarotNmyanmarastrology?mibextid=LQQJ4d"
+                                target="_blank">Facebook</a>
                         </li>
                         <li>
-                            <a href="https://www.tiktok.com/@moonsunastro31?_t=8qMcGQGMmcD&_r=1" target="_blank">Tiktok</a>
+                            <a href="https://www.tiktok.com/@moonsunastro31?_t=8qMcGQGMmcD&_r=1"
+                                target="_blank">Tiktok</a>
                         </li>
                         {{-- <li>
                             <a href="#0">LinkedIn</a>
@@ -63,7 +65,7 @@
                 </div> --}}
             </div>
         </div>
-        <div class="sub-footer pt-40 pb-40 bord-thin-top ontop">
+        <div class="sub-footer pt-30 pb-10 bord-thin-top ontop">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
@@ -76,9 +78,28 @@
                     <div class="col-lg-8">
                         <div class="copyright d-flex">
                             <div class="ml-auto">
-                                <p class="fz-13">© 2023 Geekfolio is Proudly Powered by <span class="underline"><a
-                                            href="https://themeforest.net/user/ui-themez"
-                                            target="_blank">Ui-ThemeZ</a></span></p>
+                                <ul class="flex items-center">
+                                    <li class="">
+                                        <a class="text-dark nav-link" href="#" role="button">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-dark nav-link" href="#" role="button">
+                                            Shop
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-dark nav-link" href="page-contact.html">
+                                            Blogs
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-dark nav-link" href="page-contact.html">
+                                            Contact
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

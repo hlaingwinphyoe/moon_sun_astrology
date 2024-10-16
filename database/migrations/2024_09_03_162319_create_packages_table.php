@@ -37,6 +37,7 @@ return new class extends Migration
             $table->boolean('disabled')->default(0);
             $table->integer('priority')->default(0);
             $table->foreignId('type_id')->nullable();
+            $table->foreignId('currency_id')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

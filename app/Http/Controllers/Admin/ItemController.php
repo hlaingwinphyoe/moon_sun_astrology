@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use App\Models\Item;
 use App\Models\Status;
 use App\Services\MediaService;
@@ -34,6 +35,8 @@ class ItemController extends Controller
                 'code' => $item->code,
                 'name' => $item->name,
                 'price' => $item->price,
+                'currency_id' => $item->currency_id,
+                'currency' => $item->currency ? $item->currency->name : 'MMK',
                 'owner' => $item->owner,
                 'created_at' => $item->created_at->diffForHumans(),
                 'disabled' => $item->disabled,
@@ -41,9 +44,11 @@ class ItemController extends Controller
             ]);
 
         // $astrologers = Status::isType('')->get();
+        $currencies = Currency::latest()->get();
 
         return Inertia::render('Admin/Item/Index', [
             'items' => $items,
+            'currencies' => $currencies,
         ]);
     }
 
@@ -52,6 +57,7 @@ class ItemController extends Controller
         $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'currency' => 'required|numeric|exists:currencies,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -60,6 +66,7 @@ class ItemController extends Controller
             $item = Item::create([
                 'name' => $request->name,
                 'price' => $request->price,
+                'currency_id' => $request->currency,
                 'user_id' => Auth::id()
             ]);
 
@@ -90,6 +97,7 @@ class ItemController extends Controller
         $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric|min:0',
+            'currency' => 'required|numeric|exists:currencies,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -98,6 +106,7 @@ class ItemController extends Controller
             $item->update([
                 'name' => $request->name,
                 'price' => $request->price,
+                'currency_id' => $request->currency,
                 'user_id' => Auth::id()
             ]);
 

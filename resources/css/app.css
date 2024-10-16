@@ -5,36 +5,36 @@
 @tailwind utilities;
 
 @layer components {
-    .upload-card {
-        @apply border border-dashed border-[#CDD0E4] h-[148px] w-[148px] rounded-md flex items-center justify-center cursor-pointer overflow-hidden bg-[#fafafa];
-    }
+  .upload-card {
+    @apply border border-dashed border-[#CDD0E4] h-[148px] w-[148px] rounded-md flex items-center justify-center cursor-pointer overflow-hidden bg-[#fafafa];
+  }
 
-    .absolute-center {
-        @apply absolute -translate-x-[50%] -translate-y-[50%] top-[50%] left-[47%];
-    }
+  .absolute-center {
+    @apply absolute -translate-x-[50%] -translate-y-[50%] top-[50%] left-[47%];
+  }
 
-    .is-active {
-        @apply bg-primary-100 hover:bg-primary-100 text-primary-700;
-    }
+  .is-active {
+    @apply bg-primary-100 hover:bg-primary-100 text-primary-700;
+  }
 
-    .editor-header {
-        @apply flex items-center flex-wrap gap-x-3 border-t border-l border-r rounded-t border-[#dcdfe6] p-3;
-    }
+  .editor-header {
+    @apply flex items-center flex-wrap gap-x-3 border-t border-l border-r rounded-t border-[#dcdfe6] p-3;
+  }
 
-    .editor-body {
-        @apply border border-[#dcdfe6] rounded rounded-t-none px-4 min-h-[12rem] max-h-[12rem] overflow-y-auto prose max-w-none;
-    }
+  .editor-body {
+    @apply border border-[#dcdfe6] rounded rounded-t-none px-4 min-h-[12rem] max-h-[12rem] overflow-y-auto prose max-w-none;
+  }
 
-    .editor-btn {
-        @apply px-2 py-0.5 hover:bg-gray-200 rounded-sm font-bold;
-    }
+  .editor-btn {
+    @apply px-2 py-0.5 hover:bg-gray-200 rounded-sm font-bold;
+  }
 }
 
 [x-cloak] {
-    display: none;
+  display: none;
 }
 
 body {
-    background-color: #f4f4f4;
-    user-select: none;
+  background-color: #eeebe6 !important;
+  user-select: none;
 }

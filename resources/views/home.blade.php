@@ -34,7 +34,7 @@
                         <span class="rotate-text">You for Better Future</span>
                     </h2>
                     <a href="page-contact.html" class="butn butn-md butn-bg main-colorbg2 radius-30 mb-80">
-                        <span>Make Booking</span>
+                        <span>Book Reading Now</span>
                     </a>
                 </div>
             </div>
@@ -59,7 +59,9 @@
                                 </svg>
                             </div>
                             <div class="in-circle text-center">
-                                <h3>A <span class="fw-300 fz-30">+</span></h3>
+                                {{-- <h3>A <span class="fw-300 fz-30">+</span></h3> --}}
+                                <img src="{{ asset('Logo_Black.png') }}" style="width: 70px;height: 70px"
+                                    alt="">
                             </div>
                         </div>
                     </div>
@@ -72,6 +74,6 @@
             </div>
         </div>
     </div>
-    <div class="bg-pattern bg-img" data-background="{{ asset('build/assets/PrimaryButton-C-JDX3-N.js') }}">
+    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/astrology-bg.png') }}">
     </div>
 </header>

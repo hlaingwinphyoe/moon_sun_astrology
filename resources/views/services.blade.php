@@ -1,4 +1,4 @@
-<section class="serv-box section-padding pb-0">
+<section class="serv-box section-padding pb-0 header-creative">
     <div class="container">
         <div class="sec-lg-head mb-80">
             <div class="row">
@@ -40,9 +40,11 @@
                     </div>
                 </div>
             @empty
-            No Card Available
+                No Card Available
             @endforelse
 
         </div>
+    </div>
+    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/bg-content-section-astro.png') }}">
     </div>
 </section>

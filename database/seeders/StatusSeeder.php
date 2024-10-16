@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Currency;
 use App\Models\Status;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -35,5 +36,31 @@ class StatusSeeder extends Seeder
                 ]);
             }
         }
+
+        $currency = Currency::create([
+            'slug' => 'mmk',
+            'name' => 'MMK'
+        ]);
+
+        $currency->exchangerates()->create([
+            'rate' => 1,
+            'mmk' => 1,
+            'user_id' => 1,
+        ]);
+
+        $currency = Currency::create([
+            'slug' => 'baht',
+            'name' => 'Baht'
+        ]);
+
+        $currency = Currency::create([
+            'slug' => 'yuan',
+            'name' => 'Yuan'
+        ]);
+
+        $currency = Currency::create([
+            'slug' => 'dollar',
+            'name' => '$'
+        ]);
     }
 }

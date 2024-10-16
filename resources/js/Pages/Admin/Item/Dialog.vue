@@ -35,8 +35,31 @@
           },
         ]"
       >
-        <el-input type="number" min="0" v-model="form.price" />
+        <el-input
+          v-model="form.price"
+          type="number"
+          :min="0"
+          style="max-width: 600px"
+          placeholder="Please input"
+          class="input-with-select"
+        >
+          <template #append>
+            <el-select
+              v-model="form.currency"
+              placeholder="Select"
+              style="width: 115px"
+            >
+              <el-option
+                v-for="item in currencies"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              />
+            </el-select>
+          </template>
+        </el-input>
         <InputError class="mt-2" :message="$page.props.errors.price" />
+        <InputError class="mt-2" :message="$page.props.errors.currency" />
       </el-form-item>
       <el-form-item label="Image">
         <div class="relative group">
@@ -93,7 +116,7 @@ import InputError from "@/Components/InputError.vue";
 import { Plus, Delete } from "@element-plus/icons-vue";
 import { router } from "@inertiajs/vue3";
 export default {
-  props: ["show", "title", "data"],
+  props: ["show", "title", "data", "currencies"],
   components: {
     InputError,
     Plus,
@@ -109,6 +132,7 @@ export default {
       form: {
         name: "",
         price: "",
+        currency: "",
       },
     });
 
@@ -120,6 +144,7 @@ export default {
         if (valid) {
           state.virtualForm.append("name", state.form.name);
           state.virtualForm.append("price", state.form.price);
+          state.virtualForm.append("currency", state.form.currency);
           if (state.dialogTitle === "Create") {
             router.post(route("admin.items.store"), state.virtualForm, {
               onSuccess: (page) => {
@@ -196,6 +221,7 @@ export default {
       state.dialogTitle = props.title;
       state.form.name = props.data.name ?? "";
       state.form.price = props.data.price ?? "";
+      state.form.currency = props.data.currency_id ?? props.currencies[0].id;
       state.imgSrc = props.data.image ?? "";
     };
 
