@@ -33,8 +33,9 @@
                         <span class="rotate-text">Mystic Visions, Guiding</span>
                         <span class="rotate-text">You for Better Future</span>
                     </h2>
-                    <a href="page-contact.html" class="butn butn-md butn-bg main-colorbg2 radius-30 mb-80">
-                        <span>Book Reading Now</span>
+                    <a href="{{ route('make-appointment') }}"
+                        class="butn butn-md butn-bg main-colorbg2 radius-30 mb-80">
+                        <span>Make Appointment Now!</span>
                     </a>
                 </div>
             </div>

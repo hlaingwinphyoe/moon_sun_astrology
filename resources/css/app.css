@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer components {
+  .custom-input {
+    @apply border-gray-300 focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm;
+  }
+
   .upload-card {
     @apply border border-dashed border-[#CDD0E4] h-[148px] w-[148px] rounded-md flex items-center justify-center cursor-pointer overflow-hidden bg-[#fafafa];
   }
@@ -14,7 +18,7 @@
   }
 
   .is-active {
-    @apply bg-primary-100 hover:bg-primary-100 text-primary-700;
+    @apply bg-gray-100 hover:bg-gray-100 text-primary-700;
   }
 
   .editor-header {

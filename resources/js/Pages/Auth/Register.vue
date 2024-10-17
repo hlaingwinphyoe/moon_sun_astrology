@@ -1,112 +1,161 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import Checkbox from '@/Components/Checkbox.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import AuthenticationCard from "@/Components/AuthenticationCard.vue";
+import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
+import Checkbox from "@/Components/Checkbox.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    terms: false,
+  name: "",
+  email: "",
+  phone: "",
+  password: "",
+  password_confirmation: "",
+  terms: false,
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+  form.post(route("register"), {
+    onFinish: () => form.reset("password", "password_confirmation"),
+  });
 };
 </script>
 
 <template>
-    <Head title="Register" />
+  <Head title="Register" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
+  <div class="container mx-auto">
+    <img src="/Full_Black.png" class="w-auto h-16 absolute top-5" alt="" />
+    <div
+      class="min-h-screen p-8 items-center grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8"
+    >
+      <div>
+        <h4
+          class="font-medium border border-black rounded-full uppercase px-8 text-sm py-2 w-fit mb-4"
+        >
+          Get In Touch
+        </h4>
+        <h4 class="text-5xl font-bold tracking-wide mb-4">
+          <p class="mb-3">Let's get in</p>
+          <p>touch with us.</p>
+        </h4>
+        <p class="text-gray-500 text-base tracking-wide mb-5">
+          If you would like to work with us or just want to get in touch, we’d
+          love to hear from you!
+        </p>
+        <p class="text-3xl font-bold tracking-wide mb-4">06-6085-7579</p>
+        <ul class="flex gap-4 md:gap-8">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Tiktok</a></li>
+        </ul>
+      </div>
+      <div>
+        <el-form
+          label-width="120px"
+          ref="formRef"
+          :model="form"
+          label-position="top"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <el-form-item
+              label="Name"
+              prop="name"
+              size="large"
+              :rules="[
+                {
+                  required: true,
+                  message: 'Name is required',
+                  trigger: 'blur',
+                },
+              ]"
+            >
+              <el-input v-model="form.name" placeholder="" />
+              <InputError class="mt-2" :message="form.errors.name" />
+            </el-form-item>
+            <el-form-item
+              label="Email"
+              prop="email"
+              size="large"
+              :rules="[
+                {
+                  required: true,
+                  message: 'Email is required',
+                  trigger: 'blur',
+                },
+              ]"
+            >
+              <el-input v-model="form.email" placeholder="" />
+              <InputError class="mt-2" :message="form.errors.email" />
+            </el-form-item>
+          </div>
+          <el-form-item
+            label="Password"
+            prop="password"
+            size="large"
+            :rules="[
+              {
+                required: true,
+                message: 'Password is required',
+                trigger: 'blur',
+              },
+            ]"
+          >
+            <el-input
+              type="password"
+              v-model="form.password"
+              placeholder=""
+              show-password
+            />
+            <InputError class="mt-2" :message="form.errors.password" />
+          </el-form-item>
+          <el-form-item
+            label="Password Confirmation"
+            prop="password_confirmation"
+            size="large"
+            :rules="[
+              {
+                required: true,
+                message: 'Password Confirmation is required',
+                trigger: 'blur',
+              },
+            ]"
+          >
+            <el-input
+              type="password"
+              v-model="form.password_confirmation"
+              placeholder=""
+              show-password
+            />
+            <InputError
+              class="mt-2"
+              :message="form.errors.password_confirmation"
+            />
+          </el-form-item>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-                <InputError class="mt-2" :message="form.errors.name" />
-            </div>
+          <el-checkbox v-model="form.terms" size="large">
+            I accept the <a href="#" class="underline underline-offset-1">Terms & Conditions</a>
+          </el-checkbox>
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="mt-4">
-                <InputLabel for="terms">
-                    <div class="flex items-center">
-                        <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
-
-                        <div class="ms-2">
-                            I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Privacy Policy</a>
-                        </div>
-                    </div>
-                    <InputError class="mt-2" :message="form.errors.terms" />
-                </InputLabel>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Already registered?
-                </Link>
-
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
-            </div>
-        </form>
-    </AuthenticationCard>
+          <div class="flex gap-6 items-center mt-4">
+            <el-button
+              type="primary"
+              class="!text-black"
+              size="large"
+              @click="submit"
+              :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing"
+            >
+              Sign Up
+            </el-button>
+            <Link :href="route('login')" class="underline underline-offset-1"
+              >Already have account? Log in!</Link
+            >
+          </div>
+        </el-form>
+      </div>
+    </div>
+  </div>
 </template>

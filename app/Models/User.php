@@ -128,9 +128,6 @@ class User extends Authenticatable
     // helper function
     public function getRedirectRoute(): string
     {
-        return match ((int)$this->role_id) {
-            1 => route('admin.dashboard'),
-            2 => route('welcome'),
-        };
+        
     }
 }

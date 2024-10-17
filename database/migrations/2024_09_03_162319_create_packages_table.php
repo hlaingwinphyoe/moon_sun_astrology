@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('image')->nullable();
             $table->boolean('disabled')->default(0);
             $table->foreignId('astrologer_id');
+            $table->foreignId('currency_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

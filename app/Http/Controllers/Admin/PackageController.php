@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use App\Models\Package;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,6 +25,8 @@ class PackageController extends Controller
                 'id' => $package->id,
                 'name' => $package->name,
                 'price' => $package->price,
+                'currency_id' => $package->currency_id,
+                'currency' => $package->currency ? $package->currency->name : 'MMK',
                 'astrologer' => $package->astrologer ? $package->astrologer->name : '',
                 'astrologer_id' => $package->astrologer_id,
                 'created_at' => $package->created_at->diffForHumans(),
@@ -31,10 +34,12 @@ class PackageController extends Controller
             ]);
 
         $astrologers = User::astrologer()->get();
+        $currencies = Currency::latest()->get();
 
         return Inertia::render('Admin/Package/Index', [
             'packages' => $packages,
-            'astrologers' => $astrologers
+            'astrologers' => $astrologers,
+            'currencies' => $currencies,
         ]);
     }
 
@@ -43,6 +48,7 @@ class PackageController extends Controller
         $request->validate([
             'name' => 'required|string|unique:packages,name',
             'price' => 'required|numeric|min:50',
+            'currency' => 'required|numeric|exists:currencies,id',
             'astrologer' => 'required|numeric|exists:users,id'
         ]);
 
@@ -51,6 +57,7 @@ class PackageController extends Controller
                 'name' => $request->name,
                 'price' => $request->price,
                 'astrologer_id' => $request->astrologer,
+                'currency_id' => $request->currency
             ]);
         });
 
@@ -62,6 +69,7 @@ class PackageController extends Controller
         $request->validate([
             'name' => 'required|string|unique:packages,name,' . $package->id,
             'price' => 'required|numeric|min:50',
+            'currency' => 'required|numeric|exists:currencies,id',
             'astrologer' => 'required|numeric|exists:users,id'
         ]);
 
@@ -70,6 +78,7 @@ class PackageController extends Controller
                 'name' => $request->name,
                 'price' => $request->price,
                 'astrologer_id' => $request->astrologer,
+                'currency_id' => $request->currency
             ]);
         });
 

@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" role="button">
+                    <a class="nav-link" href="/" role="button">
                         <span class="rolling-text">Home</span>
                     </a>
                 </li>
@@ -41,31 +41,49 @@
                 </li>
             </ul>
         </div>
+        @auth
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="rolling-text">{{ auth()->user()->name }}</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        @admin
+                            <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        @endadmin
+                        <div style="cursor: pointer">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                                    class="dropdown-item">
+                                    Log Out
+                                </a>
+                            </form>
+                        </div>
 
-        <div class="search-form">
-            <div class="form-group">
-                <input type="text" name="search" placeholder="Search">
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256">
-                        <path fill="currentColor"
-                            d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72" />
+                    </div>
+                </li>
+            </ul>
+        @endauth
+        {{-- <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                    onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                    class="flex text-red-500">
+                    {{ __('Log Out') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout ml-2"
+                        width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M9 12h12l-3 -3" />
+                        <path d="M18 15l3 -3" />
                     </svg>
-                </button>
-            </div>
-            <div class="search-icon">
-                <span class="open-search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256">
-                        <path fill="currentColor"
-                            d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72" />
-                    </svg>
-                </span>
-                <span class="close-search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256">
-                        <path fill="currentColor"
-                            d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z" />
-                    </svg>
-                </span>
-            </div>
-        </div>
-    </div>
+                </x-dropdown-link>
+            </form> --}}
 </nav>

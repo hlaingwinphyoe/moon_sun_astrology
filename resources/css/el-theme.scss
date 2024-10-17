@@ -1,29 +1,41 @@
 :root {
-    --el-color-primary: #356bb3 !important;
+  --el-color-primary: #181828 !important;
+  --el-color-primary-light-3: #58587e !important;
+  --el-color-primary-light-5: #9090be !important;
+  --el-color-primary-light-7: #c4c4e9 !important;
+  --el-color-primary-light-8: #e0e0f4 !important;
+  --el-color-primary-light-9: #e9e9f8 !important;
 
-    // --el-color-success: #4cbc32 !important;
-    // --el-color-warning: #ffaf45 !important;
-    // --el-color-danger: #e02c41 !important;
-    // --el-color-info: #607d8b !important;
-    // --el-color-info-light-3: #90a4ae !important;
-    // --el-color-info-light-5: #eceff1 !important;
+  // --el-color-success: #4cbc32 !important;
+  // --el-color-warning: #ffaf45 !important;
+  // --el-color-danger: #e02c41 !important;
+  // --el-color-info: #607d8b !important;
+  // --el-color-info-light-3: #90a4ae !important;
+  // --el-color-info-light-5: #eceff1 !important;
 
-    // --el-text-color-secondary: #606266 !important;
+  // --el-text-color-secondary: #606266 !important;
 }
 
 .example-showcase .el-loading-mask {
-    z-index: 9;
+  z-index: 9;
 }
 
 .el-menu-item.is-active {
-background-color: #356bb3 !important;
-    color: white !important;
+  background-color: #181828 !important;
+  color: white !important;
 
-    &:hover {
-        background-color: #356bb3 !important;
-    }
+  &:hover {
+    background-color: #181828 !important;
+  }
 }
 .el-sub-menu__title:hover,
 .el-menu-item:hover {
-    background-color: #cfd8dc !important;
+  background-color: #cfd8dc !important;
+}
+
+.el-input__inner:focus {
+  outline-offset: 0 !important;
+  outline: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
