@@ -1,6 +1,6 @@
 <div class="item">
     <div class="img">
-        <img src="{{ $post->media }}" alt="">
+        <img style="height: 200px; object-fit:cover" src="{{ $post->media }}" alt="{{ $post->media }}">
         <a href="{{ route('blogs.details', $post->slug) }}" class="main-colorbg3">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -15,15 +15,17 @@
                 {{ $post->title }}
             </a>
         </h6>
+        <p class="text-ellipsis-2" style="font-size: 14px">{{ $post->excerpt }}</p>
         <div class="info mt-20 mb-20 pt-20 bord-thin-top">
             <span class="by">
-                <a href="{{ route('blogs.details', $post->slug) }}"><i class="far fa-user fz-14 mr-10"></i> By
+                <a href="{{ route('blogs.details', $post->slug) }}"><i class="far fa-user fz-14 mr-7"></i>
+                    By
                     {{ $post->user ? $post->user->name : '' }}
                 </a>
             </span>
             <span class="dot main-colorbg3"></span>
             <span class="date">
-                <a href="{{ route('blogs.details', $post->slug) }}"><i class="far fa-calendar-alt fz-14 mr-10"></i>
+                <a href="{{ route('blogs.details', $post->slug) }}"><i class="far fa-calendar-alt fz-14 mr-7"></i>
                     {{ $post->created_at->format('F j, Y') }}
                 </a>
             </span>

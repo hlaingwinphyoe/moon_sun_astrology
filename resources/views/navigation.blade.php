@@ -25,15 +25,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('welcome') }}#package" role="button">
+                    <a class="nav-link" href="{{ route('packages.list') }}" role="button">
                         <span class="rolling-text">Package</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#" role="button">
                         <span class="rolling-text">Shop</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('blogs.list') }}">
                         <span class="rolling-text">Blogs</span>
@@ -44,10 +44,34 @@
                         <span class="rolling-text">Contact</span>
                     </a>
                 </li>
+                @auth
+                    <li class="nav-item dropdown d-block d-lg-none">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="rolling-text">{{ auth()->user()->name }}</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            @admin
+                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            @endadmin
+                            <div style="cursor: pointer">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                                        class="dropdown-item">
+                                        Log Out
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                @endauth
             </ul>
         </div>
         @auth
-            <ul class="navbar-nav">
+            <ul class="navbar-nav d-none d-lg-block">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">

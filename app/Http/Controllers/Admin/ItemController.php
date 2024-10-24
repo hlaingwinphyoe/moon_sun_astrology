@@ -84,7 +84,7 @@ class ItemController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.items.index')->with('success', 'Successfully Created.');
+            return redirect()->back()->with('success', 'Successfully Created.');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -128,7 +128,7 @@ class ItemController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.items.index')->with('success', 'Successfully Updated.');
+            return redirect()->back()->with('success', 'Successfully Updated.');
         } catch (\Exception $e) {
             DB::rollBack();
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PostResource;
 use App\Models\Package;
 use App\Models\Post;
+use App\Models\Zodiac;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +18,7 @@ class FrontController extends Controller
         $packages = Package::with(['astrologer', 'currency'])
             ->latest()
             ->get()
-            ->take(3);
+            ->take(4);
 
         // $posts = PostResource::collection(Cache::remember('posts', 60, function () {
         //     return Post::with(['category', 'user'])
@@ -32,9 +33,12 @@ class FrontController extends Controller
             ->get()
             ->take(6);
 
+        $zodiacs = Zodiac::orderBy('id', 'asc')->get();
+
         return view('front', [
             'packages' => $packages,
-            'posts' => $posts
+            'posts' => $posts,
+            'zodiacs' => $zodiacs,
         ]);
     }
 
@@ -43,20 +47,38 @@ class FrontController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login');
         } else {
-            dd('login');
+            // return view()
         }
     }
 
     public function blogsList()
     {
+        $post = Post::with(['category', 'user'])
+            ->published()
+            ->orderBy('id', 'desc')
+            ->first();
+
         $posts = Post::query()
             ->with(['category', 'user'])
+            ->filterOn()
+            ->orderBy('id', 'desc')
+            ->where('id', '!=', $post->id)
+            ->paginate(12)
+            ->withQueryString();
+
+        return view('blogs.index', compact('posts', 'post'));
+    }
+
+    public function packageList()
+    {
+        $packages = Package::query()
+            ->with(['astrologer', 'currency'])
             ->filterOn()
             ->orderBy('id', 'desc')
             ->paginate(12)
             ->withQueryString();
 
-        return view('blogs.index', compact('posts'));
+        return view('packages.index', compact('packages'));
     }
 
     public function blogDetails($slug)

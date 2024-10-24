@@ -32,7 +32,7 @@
                     @include('components.post-card')
                 </div>
             @empty
-                No Posts Available
+                No Package Available
             @endforelse
 
         </div>

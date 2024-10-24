@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             UserSeeder::class,
             PackageSeeder::class,
+            ZodiacSeeder::class,
+            PostSeeder::class,
         ]);
     }
 }

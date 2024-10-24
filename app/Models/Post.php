@@ -35,6 +35,7 @@ class Post extends Model
     }
 
     // scope function
+
     public function scopePublished($query)
     {
         $query->where('is_published', 0);
@@ -53,7 +54,7 @@ class Post extends Model
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                return $attributes['poster'] !== null ? '/storage/' . $attributes['poster'] : '';
+                return $attributes['poster'] !== null ? '/storage/' . $attributes['poster'] : '/imgs/4.jpg';
             }
         );
     }
