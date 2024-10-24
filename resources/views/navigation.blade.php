@@ -2,7 +2,7 @@
     <div class="container">
 
         <!-- Logo -->
-        <a class="logo icon-img-100" href="#">
+        <a class="logo icon-img-100" href="/">
             <img src="{{ asset('Full_Black.png') }}" alt="logo">
         </a>
 
@@ -19,18 +19,23 @@
                         <span class="rolling-text">Home</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false"><span class="rolling-text">Shop</span></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="page-about.html">About</a>
-                        <a class="dropdown-item" href="page-services.html">Services</a>
-                        <a class="dropdown-item" href="page-team.html">Our Team</a>
-                        <a class="dropdown-item" href="page-contact.html">Contact Us</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('welcome') }}#about" role="button">
+                        <span class="rolling-text">About</span>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="page-contact.html">
+                    <a class="nav-link" href="{{ route('welcome') }}#package" role="button">
+                        <span class="rolling-text">Package</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" role="button">
+                        <span class="rolling-text">Shop</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('blogs.list') }}">
                         <span class="rolling-text">Blogs</span>
                     </a>
                 </li>

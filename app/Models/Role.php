@@ -51,7 +51,7 @@ class Role extends Model
 
     public function scopeNotDeveloper($query)
     {
-        $query->where('type', '!=', 'Developer');
+        $query->where('name', '!=', 'Developer');
     }
 
     public function scopeNotAdmin($query)

@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <div class="recent-posts blog-list-half crev sub-bg section-padding mt-100">
+        <div class="recent-posts blog-crev sub-bg section-padding mt-100">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -114,33 +114,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($recentPosts as $recentPost)
-                        <div class="col-lg-6 md-mb50">
-                            <div class="item mb-30">
-                                <div class="row rest">
-                                    <div class="col-md-6">
-                                        <div class="img">
-                                            <img src="{{ $recentPost->media }}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 valign">
-                                        <div class="cont">
-                                            <span class="date fz-12 ls1 text-u opacity-7 mb-10">
-                                                {{ $recentPost->created_at->format('F j, Y') }}
-                                            </span>
-                                            <h6>
-                                                <a
-                                                    href="{{ route('blogs.details', $recentPost->slug) }}">{{ $recentPost->title }}</a>
-                                            </h6>
-                                            <div class="tags colorbg mt-15">
-                                                <a
-                                                    href="{{ route('blogs.details', $recentPost->slug) }}">{{ $recentPost->category ? $recentPost->category->name : '' }}</a>
-                                                {{-- <a href="#0">Design</a> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    @foreach ($recentPosts as $post)
+                        <div class="col-lg-4 mb-4 mb-md-5">
+                            @include('components.post-card')
                         </div>
                     @endforeach
 

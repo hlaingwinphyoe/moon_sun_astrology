@@ -47,6 +47,18 @@ class FrontController extends Controller
         }
     }
 
+    public function blogsList()
+    {
+        $posts = Post::query()
+            ->with(['category', 'user'])
+            ->filterOn()
+            ->orderBy('id', 'desc')
+            ->paginate(12)
+            ->withQueryString();
+
+        return view('blogs.index', compact('posts'));
+    }
+
     public function blogDetails($slug)
     {
         $post = Post::with(['category', 'user'])
@@ -59,7 +71,7 @@ class FrontController extends Controller
                 ->where('id', '!=', $post->id)
                 ->inRandomOrder()
                 ->get()
-                ->take(2);
+                ->take(3);
 
             return view('blogs.details', compact('post', 'recentPosts'));
         } else {

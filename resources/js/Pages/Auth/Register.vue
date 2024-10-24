@@ -142,7 +142,6 @@ const submit = () => {
           <div class="flex gap-6 items-center mt-4">
             <el-button
               type="primary"
-              class="!text-black"
               size="large"
               @click="submit"
               :class="{ 'opacity-25': form.processing }"

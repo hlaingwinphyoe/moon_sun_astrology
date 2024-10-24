@@ -1,4 +1,4 @@
-<section class="serv-box section-padding pb-0 header-creative">
+<section class="serv-box section-padding pb-0 header-creative" id="package">
     <div class="container">
         <div class="sec-lg-head mb-80">
             <div class="row">
@@ -45,6 +45,6 @@
 
         </div>
     </div>
-    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/bg-content-section-astro.png') }}">
+    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/bg-2.png') }}">
     </div>
 </section>

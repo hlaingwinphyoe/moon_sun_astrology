@@ -1,4 +1,4 @@
-<div class="clients section-padding pb-100 position-re">
+<div class="clients section-padding pb-100 position-re header-creative">
     <div class="container">
         <div class="row justify-content-center mb-80">
 
@@ -177,5 +177,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/bg-1.png') }}">
     </div>
 </div>

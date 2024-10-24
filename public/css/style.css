@@ -1,18 +1,4 @@
 @charset "UTF-8";
-/*-----------------------------------------------------------------------------------
-
-    Theme Name: Geekfolio
-    Theme URI: http://
-    Description: Creative Agency & Portfolio
-    Author: UI-ThemeZ
-    Author URI: http://themeforest.net/user/UI-ThemeZ
-    Version: 1.0
-
------------------------------------------------------------------------------------*/
-/* Variables
------------------------------------------------------------------*/
-/* Typography
------------------------------------------------------------------*/
 * {
   margin: 0;
   padding: 0;
@@ -4322,7 +4308,7 @@ body.loaded {
 }
 
 .about .bg-pattern {
-  background-size: 95% !important;
+  background-size: 100% !important;
 }
 
 .intro-imgs .to-up {
@@ -4939,11 +4925,13 @@ body.loaded {
 .blog-list-half .item {
   border-radius: 10px;
   overflow: hidden;
+  max-height: 300px;
 }
 
 .blog-list-half .item .img {
-  min-height: 300px;
+  height: 300px;
   padding-right: 0;
+  object-fit: cover;
 }
 
 .blog-list-half .item .img img {
@@ -9441,6 +9429,127 @@ header.in-box {
   width: 100%;
   text-align: center;
   border-radius: 40px;
+}
+
+.text-ellipsis-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-ellipsis-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pagination-container {
+  /* margin-top: 1em; */
+  /* padding-top: 1.5em; */
+  /* border-top: 1px solid #d7dadb; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-item {
+  list-style-type: none;
+  display: inline-block;
+  border-right: 1px solid #d7dadb;
+  border-left: 1px solid #d7dadb;
+
+  transform: scale(1) rotate(19deg) translateX(0px) translateY(0px)
+    skewX(-10deg) skewY(-20deg);
+}
+
+.pagination-item:hover,
+.pagination-item.is-active {
+  background-color: #fec40c;
+  border-right: 1px solid #fec40c !important;
+}
+
+.pagination-item.is-active .pagination-link {
+  color: #fff;
+}
+
+.pagination-link {
+  padding: 1em 1.6em;
+  display: inline-block;
+  text-decoration: none;
+  color: #8b969c;
+
+  transform: scale(1) rotate(0deg) translateX(0px) translateY(0px) skewX(20deg)
+    skewY(0deg);
+}
+
+.pagination-item--wide {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.pagination-item--wide.first {
+  margin: 0 1em 0 0;
+}
+
+.pagination-item--wide.last {
+  margin: 0 0 0 1em;
+}
+
+.pagination-link--wide {
+  text-decoration: none;
+  color: #8b969c !important;
+  padding: 1.1em 1.6em;
+  cursor: pointer;
+}
+
+.pagination-link--wide:hover {
+  color: #fec40c;
+}
+
+.pagination-link--wide.first:before,
+.pagination-link--wide.last:after {
+  font-family: "Soro";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pagination-link--wide.first::before {
+  content: "\2190";
+  margin-right: 0.5em;
+  font-size: 20px;
+}
+
+.pagination-link--wide.last::after {
+  content: "\2192";
+  margin-left: 0.5em;
+  font-size: 20px;
+}
+
+.last.disabled .pagination-link--wide:hover {
+  color: #8b969c !important;
+}
+
+.first.disabled .pagination-link--wide:hover {
+  color: #8b969c !important;
 }
 
 /* ====================== [ Start Responsive ] ====================== */

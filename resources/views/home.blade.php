@@ -1,4 +1,4 @@
-<header class="header-creative">
+<header class="header-creative" id="home">
     <div class="container ontop">
         <div class="row justify-content-center full-height">
             <div class="col-lg-3 d-flex align-items-end">
@@ -75,6 +75,6 @@
             </div>
         </div>
     </div>
-    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/astrology-bg.png') }}">
+    <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/bg-1.png') }}">
     </div>
 </header>
