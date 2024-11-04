@@ -16,11 +16,13 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('name')->unique();
             $table->double('price')->unsigned()->default(0.0);
+            $table->double('th_price')->unsigned()->default(0.0);
             $table->text('desc')->nullable();
             $table->text('image')->nullable();
             $table->boolean('disabled')->default(0);
             $table->foreignId('astrologer_id');
-            $table->foreignId('currency_id')->nullable();
+            $table->foreignId('currency_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('th_currency_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
@@ -34,11 +36,13 @@ return new class extends Migration
             $table->string('name');
             $table->text('desc')->nullable();
             $table->double('price')->unsigned()->default(0.0);
+            $table->double('th_price')->unsigned()->default(0.0);
             $table->text('image')->nullable();
             $table->boolean('disabled')->default(0);
             $table->integer('priority')->default(0);
             $table->foreignId('type_id')->nullable();
             $table->foreignId('currency_id')->nullable();
+            $table->foreignId('th_currency_id')->nullable();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();

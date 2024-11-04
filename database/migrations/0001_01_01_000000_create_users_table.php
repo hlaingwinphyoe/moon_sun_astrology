@@ -32,6 +32,17 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('banks', function (Blueprint $table) {
+            $table->id();
+            $table->string('type')->default('bank');
+            $table->string('acc_name');
+            $table->string('acc_no');
+            $table->string('image')->nullable();
+            $table->integer('priority')->default(999);
+            $table->boolean('disabled')->default(0);
+            $table->timestamps();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
@@ -40,7 +51,8 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->date('dob')->nullable();
             $table->string('social_link')->nullable();
-            $table->foreignId('day_id')->nullable();
+            $table->string('other_social')->nullable();
+            $table->foreignId('weekday_id')->nullable();
             $table->foreignId('gender_id')->nullable();
             $table->foreignId('role_id');
             $table->timestamp('email_verified_at')->nullable();
@@ -52,7 +64,7 @@ return new class extends Migration
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->foreign('gender_id')->references('id')->on('statuses')->onDelete('cascade');
-            $table->foreign('day_id')->references('id')->on('statuses')->onDelete('cascade');
+            $table->foreign('weekday_id')->references('id')->on('statuses')->onDelete('cascade');
         });
 
         Schema::create('permissions', function (Blueprint $table) {
@@ -122,5 +134,6 @@ return new class extends Migration
         Schema::dropIfExists('permissions');
         Schema::dropIfExists('dates');
         Schema::dropIfExists('dateables');
+        Schema::dropIfExists('banks');
     }
 };

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             PackageSeeder::class,
             ZodiacSeeder::class,
             PostSeeder::class,
+            BankSeeder::class,
         ]);
     }
 }

@@ -16,14 +16,14 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         $names = [
-            'sex' => ['ကျား', 'မ'],
-            'age' => ['ရက်', 'လ', 'နှစ်'],
-            'payment-type' => ['Cash', 'Bank Transfer', 'KPay', 'CBPay', 'AYAPay', 'Wave Money'],
-            'transaction' => ['ဝင်', 'ထွက်'],
-            'status' => ['ဘွတ်ကင်ယူပြီး', 'စောင်းဆိုင်းဆဲ', 'ပြီးဆုံး'],
-            'order' => ['အော်ဒါတင်ပြီး', 'အော်ဒါရရှိပြီး'],
-            'payment' => ['မပေးချေရသေးပါ', 'ပေးပြီး'],
-            'days' => ['တနင်္ဂနွေ', 'တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ'],
+            'sex' => ['Male', 'Female', 'Other'],
+            'age' => ['day', 'month', 'year'],
+            // 'payment-type' => ['Cash', 'Bank Transfer', 'KPay', 'CBPay', 'AYAPay', 'Wave Money'],
+            'transaction' => ['In', 'Out'],
+            'status' => ['Booked', 'Pending', 'Finished', 'Cancelled', 'Incomplete', 'Paid'],
+            'order' => ['Ordered', 'Received'],
+            // 'weekdays' => ['တနင်္ဂနွေ', 'တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ'],
+            'weekdays' => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         ];
 
         foreach ($names as $index => $name_ary) {
@@ -39,7 +39,7 @@ class StatusSeeder extends Seeder
 
         $currency = Currency::create([
             'slug' => 'mmk',
-            'name' => 'MMK'
+            'name' => 'Ks'
         ]);
 
         $currency->exchangerates()->create([
@@ -49,13 +49,13 @@ class StatusSeeder extends Seeder
         ]);
 
         $currency = Currency::create([
-            'slug' => 'baht',
-            'name' => 'Baht'
+            'slug' => 'thb',
+            'name' => '฿'
         ]);
 
         $currency = Currency::create([
             'slug' => 'yuan',
-            'name' => 'Yuan'
+            'name' => '元'
         ]);
 
         $currency = Currency::create([

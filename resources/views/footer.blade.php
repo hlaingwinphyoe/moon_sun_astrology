@@ -85,12 +85,12 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a class="text-dark nav-link" href="#" role="button">
-                                            Shop
+                                        <a class="text-dark nav-link" href="{{ route('packages.list') }}" role="button">
+                                            Package
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a class="text-dark nav-link" href="page-contact.html">
+                                        <a class="text-dark nav-link" href="{{ route('blogs.list') }}">
                                             Blogs
                                         </a>
                                     </li>

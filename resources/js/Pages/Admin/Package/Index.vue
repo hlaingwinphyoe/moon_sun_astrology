@@ -45,16 +45,16 @@
                 </h5>
               </template>
             </el-table-column>
-            <el-table-column label="Price" sortable align="center">
+            <el-table-column label="Price">
               <template #default="scope">
-                {{ scope.row.price }} {{ scope.row.currency }}
+                <el-tag type="primary" class="mb-1">{{ scope.row.price }} {{ scope.row.currency }}</el-tag>
+                <el-tag type="danger">{{ scope.row.th_price }} {{ scope.row.th_currency }}</el-tag>
               </template>
             </el-table-column>
             <el-table-column
               prop="astrologer"
               label="Astrologer"
               sortable
-              align="center"
             />
             <el-table-column
               prop="created_at"

@@ -25,8 +25,11 @@ class PackageController extends Controller
                 'id' => $package->id,
                 'name' => $package->name,
                 'price' => $package->price,
+                'th_price' => $package->th_price,
                 'currency_id' => $package->currency_id,
-                'currency' => $package->currency ? $package->currency->name : 'MMK',
+                'currency' => $package->currency ? $package->currency->name : 'Ks',
+                'th_currency_id' => $package->th_currency_id,
+                'th_currency' => $package->th_currency ? $package->th_currency->name : '฿',
                 'astrologer' => $package->astrologer ? $package->astrologer->name : '',
                 'astrologer_id' => $package->astrologer_id,
                 'created_at' => $package->created_at->diffForHumans(),
@@ -48,16 +51,21 @@ class PackageController extends Controller
         $request->validate([
             'name' => 'required|string|unique:packages,name',
             'price' => 'required|numeric|min:50',
-            'currency' => 'required|numeric|exists:currencies,id',
+            'th_price' => 'required|numeric|min:0',
+            'currency' => 'nullable|numeric|exists:currencies,id',
             'astrologer' => 'required|numeric|exists:users,id'
         ]);
 
         $data = DB::transaction(function () use ($request) {
+            $th_currency = Currency::where('slug', 'thb')->first();
+            $mm_currency = Currency::where('slug', 'mmk')->first();
             $package = Package::create([
                 'name' => $request->name,
                 'price' => $request->price,
+                'th_price' => $request->th_price,
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id,
                 'astrologer_id' => $request->astrologer,
-                'currency_id' => $request->currency
             ]);
         });
 
@@ -69,16 +77,21 @@ class PackageController extends Controller
         $request->validate([
             'name' => 'required|string|unique:packages,name,' . $package->id,
             'price' => 'required|numeric|min:50',
-            'currency' => 'required|numeric|exists:currencies,id',
+            'th_price' => 'required|numeric|min:0',
+            'currency' => 'nullable|numeric|exists:currencies,id',
             'astrologer' => 'required|numeric|exists:users,id'
         ]);
 
         $data = DB::transaction(function () use ($request, $package) {
+            $th_currency = Currency::where('slug', 'thb')->first();
+            $mm_currency = Currency::where('slug', 'mmk')->first();
             $package->update([
                 'name' => $request->name,
                 'price' => $request->price,
+                'th_price' => $request->th_price,
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id,
                 'astrologer_id' => $request->astrologer,
-                'currency_id' => $request->currency
             ]);
         });
 

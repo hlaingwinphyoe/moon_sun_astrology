@@ -25,6 +25,34 @@
         <InputError class="mt-2" :message="form.errors.name" />
       </el-form-item>
       <el-form-item
+        label="Price (Ks)"
+        prop="price"
+        :rules="[
+          {
+            required: true,
+            message: 'Price is required',
+            trigger: 'blur',
+          },
+        ]"
+      >
+        <el-input v-model="form.price" />
+        <InputError class="mt-2" :message="form.errors.price" />
+      </el-form-item>
+      <el-form-item
+        label="Price (฿)"
+        prop="th_price"
+        :rules="[
+          {
+            required: true,
+            message: 'Thai Price is required',
+            trigger: 'blur',
+          },
+        ]"
+      >
+        <el-input v-model="form.th_price" />
+        <InputError class="mt-2" :message="form.errors.th_price" />
+      </el-form-item>
+      <!-- <el-form-item
         label="Price"
         prop="price"
         :rules="[
@@ -60,7 +88,7 @@
         </el-input>
         <InputError class="mt-2" :message="form.errors.price" />
         <InputError class="mt-2" :message="form.errors.currency" />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item
         label="Astrologer"
         prop="astrologer"
@@ -125,7 +153,7 @@ export default {
       name: "",
       price: "",
       astrologer: "",
-      currency: "",
+      th_price: "",
     });
 
     const submitDialog = (formRef) => {
@@ -161,8 +189,9 @@ export default {
       state.dialogTitle = props.title;
       form.name = props.data.name ?? "";
       form.price = props.data.price ?? "";
+      form.th_price = props.data.th_price ?? "";
       form.astrologer = props.data.astrologer_id ?? "";
-      form.currency = props.data.currency_id ?? props.currencies[0].id;
+      // form.currency = props.data.currency_id ?? props.currencies[0].id;
     };
 
     return {

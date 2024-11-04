@@ -11,7 +11,7 @@
     </h6>
     <span class="price-tag">
         {{ $package->price }}
-        {{ $package->currency ? $package->currency->name : 'MMK' }}
+        {{ $package->currency ? $package->currency->name : 'Ks' }}
     </span>
     {{-- <p class="fz-14">Creating a higher spacing and how people move through a unique.</p> --}}
     <div class="underline">

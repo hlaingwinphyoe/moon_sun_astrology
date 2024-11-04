@@ -37,6 +37,8 @@ class ItemController extends Controller
                 'price' => $item->price,
                 'currency_id' => $item->currency_id,
                 'currency' => $item->currency ? $item->currency->name : 'MMK',
+                'th_currency_id' => $item->th_currency_id,
+                'th_currency' => $item->th_currency ? $item->th_currency->name : 'MMK',
                 'owner' => $item->owner,
                 'created_at' => $item->created_at->diffForHumans(),
                 'disabled' => $item->disabled,
@@ -57,16 +59,22 @@ class ItemController extends Controller
         $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric|min:0',
-            'currency' => 'required|numeric|exists:currencies,id',
+            'th_price' => 'required|numeric|min:0',
+            'currency' => 'nullable|numeric|exists:currencies,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         try {
             DB::beginTransaction();
+            $th_currency = Currency::where('slug', 'thb')->first();
+            $mm_currency = Currency::where('slug', 'mmk')->first();
+
             $item = Item::create([
                 'name' => $request->name,
                 'price' => $request->price,
-                'currency_id' => $request->currency,
+                'th_price' => $request->th_price,
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id,
                 'user_id' => Auth::id()
             ]);
 
@@ -97,16 +105,21 @@ class ItemController extends Controller
         $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric|min:0',
-            'currency' => 'required|numeric|exists:currencies,id',
+            'th_price' => 'required|numeric|min:0',
+            'currency' => 'nullable|numeric|exists:currencies,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         try {
             DB::beginTransaction();
+            $th_currency = Currency::where('slug', 'thb')->first();
+            $mm_currency = Currency::where('slug', 'mmk')->first();
             $item->update([
                 'name' => $request->name,
                 'price' => $request->price,
-                'currency_id' => $request->currency,
+                'th_price' => $request->th_price,
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id,
                 'user_id' => Auth::id()
             ]);
 

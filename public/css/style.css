@@ -5442,6 +5442,7 @@ body.loaded {
 }
 
 .contact-crev input,
+.contact-crev select,
 .contact-crev textarea {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -5454,6 +5455,7 @@ body.loaded {
 }
 
 .contact-crev input:focus,
+.contact-crev select:focus,
 .contact-crev textarea:focus {
   border-color: #777;
 }
@@ -9579,7 +9581,7 @@ header.in-box {
   letter-spacing: 1px;
 }
 
-.price-tag{
+.price-tag {
   padding: 2px 10px;
   border: 1px solid #fec40c;
   background-color: #fec40c;

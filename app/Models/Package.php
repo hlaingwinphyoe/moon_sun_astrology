@@ -32,6 +32,11 @@ class Package extends Model
         return $this->belongsTo(Currency::class);
     }
 
+    public function th_currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class, 'th_currency_id');
+    }
+
     // scope function
     public function scopeFilterOn($query)
     {

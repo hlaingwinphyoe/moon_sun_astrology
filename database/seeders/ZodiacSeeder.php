@@ -97,7 +97,6 @@ class ZodiacSeeder extends Seeder
                 'name' => $zodiac['name'],
                 'period' => $zodiac['period'],
                 'desc' => $zodiac['desc'],
-                'image' => $zodiac['image']
             ]);
         }
     }

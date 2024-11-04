@@ -16,42 +16,56 @@ class PackageSeeder extends Seeder
      */
     public function run(): void
     {
+        $th_currency = Currency::where('slug', 'thb')->first();
+        $mm_currency = Currency::where('slug', 'mmk')->first();
         $packages = [
             [
                 'name' => "Soulmate Connection",
-                'price' => "6500",
+                'price' => "12000",
+                'th_price' => '110',
                 'astrologer_id' => User::astrologer()->get()->random()->id,
-                'currency_id' => Currency::get()->random()->id
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id
             ],
             [
                 'name' => "Hidden Truth",
-                'price' => "6500",
+                'price' => "10000",
+                'th_price' => '100',
                 'astrologer_id' => User::astrologer()->get()->random()->id,
-                'currency_id' => Currency::get()->random()->id
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id
             ],
             [
                 'name' => "Zodiac Signs (1 year)",
-                'price' => "8500",
+                'price' => "10000",
+                'th_price' => '100',
                 'astrologer_id' => User::astrologer()->get()->random()->id,
-                'currency_id' => Currency::get()->random()->id
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id
             ],
             [
                 'name' => "Who has crush on me?",
-                'price' => "7000",
+                'price' => "14000",
+                'th_price' => "120",
                 'astrologer_id' => User::astrologer()->get()->random()->id,
-                'currency_id' => Currency::get()->random()->id
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id
             ],
             [
                 'name' => 'Your Love Challenge',
                 'price' => "11000",
+                'th_price' => "100",
                 'astrologer_id' => User::astrologer()->get()->random()->id,
-                'currency_id' => Currency::get()->random()->id
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id
             ],
             [
                 'name' => "Third Party Package",
-                'price' => "15000",
+                'price' => "12000",
+                'th_price' => "120",
                 'astrologer_id' => User::astrologer()->get()->random()->id,
-                'currency_id' => Currency::get()->random()->id
+                'currency_id' => $mm_currency->id,
+                'th_currency_id' => $th_currency->id
             ]
         ];
 
@@ -62,6 +76,9 @@ class PackageSeeder extends Seeder
                 'slug' => Str::slug($package['name']),
                 'name' => $package['name'],
                 'price' => $package['price'],
+                'th_price' => $package['th_price'],
+                'currency_id' => $package['currency_id'],
+                'th_currency_id' => $package['th_currency_id'],
                 'astrologer_id' => $package['astrologer_id']
             ]);
         }

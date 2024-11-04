@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ItemController;
@@ -22,6 +24,12 @@ Route::middleware([
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
     });
+
+    // Bookings
+    Route::controller(AppointmentController::class)->name('bookings.')->group(function () {
+        Route::get('/bookings', 'bookingsList')->name('list');
+    });
+
 
     // zodiac
     Route::resource('/zodiacs', ZodiacController::class)->except(['create', 'show', 'edit']);
@@ -58,9 +66,13 @@ Route::middleware([
 
     // staff & roles
     Route::resource('staffs', StaffController::class)->except(['create', 'show', 'edit']);
+    Route::resource('banks', BankController::class)->except(['create', 'show', 'edit']);
     Route::resource('roles', RoleController::class)->except(['create', 'show', 'edit']);
     Route::controller(StaffController::class)->prefix('/staffs')->name('staffs.')->group(function () {
         Route::patch('/{staff}/change-password', 'changePassword')->name('change-password');
         Route::delete('/{staff}/destroy-media', 'destroyMedia')->name('destroy-media');
+    });
+    Route::controller(BankController::class)->prefix('banks')->name('banks.')->group(function () {
+        Route::patch('/{bank}/change-status', 'changeStatus')->name('change-status');
     });
 });
