@@ -26,10 +26,11 @@ Route::middleware([
     });
 
     // Bookings
-    Route::controller(AppointmentController::class)->name('bookings.')->group(function () {
-        Route::get('/bookings', 'bookingsList')->name('list');
+    Route::controller(AppointmentController::class)->prefix('/bookings')->name('bookings.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::patch('/{id}/{type}', 'update')->name('update');
     });
-
 
     // zodiac
     Route::resource('/zodiacs', ZodiacController::class)->except(['create', 'show', 'edit']);

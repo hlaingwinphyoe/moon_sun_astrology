@@ -28,9 +28,18 @@ class Appointment extends Model
         return $this->hasMany(AppointmentPackage::class, 'appointment_id', 'id');
     }
 
-    // scope function
-    public function scopeFilterOn()
+    public function getPackageNames()
     {
+        $name = '';
 
+        foreach ($this->appointment_packages as $app_pack) {
+            $name .= $name ? ', ' : '';
+            $name .= $app_pack->package ? $app_pack->package->name : '';
+        }
+
+        return $name;
     }
+
+    // scope function
+    public function scopeFilterOn() {}
 }

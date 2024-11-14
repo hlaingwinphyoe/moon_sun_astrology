@@ -5,14 +5,7 @@
     <div class="p-4 container mx-auto overflow-x-auto">
       <h4 class="text-lg font-bold mb-3 ml-1">Today Bookings</h4>
       <div class="bg-white p-4 rounded shadow-sm border border-gray-200">
-        <div class="flex items-center justify-between gap-4 xl:gap-0 mt-2 mb-5">
-          <div class="flex items-center gap-3">
-            <el-button type="primary" @click="addNew">
-              <el-icon><Plus /></el-icon>
-              <span>New</span>
-            </el-button>
-          </div>
-
+        <div class="flex items-center justify-end gap-4 xl:gap-0 mt-2 mb-5">
           <div>
             <el-input
               v-model="param.search"
@@ -37,16 +30,8 @@
             table-layout="fixed"
             :default-sort="{ prop: 'appointment_no', order: 'descending' }"
           >
-            <el-table-column
-              prop="appointment_no"
-              label="Book No."
-              sortable
-            />
-            <el-table-column
-              prop="customer_name"
-              label="Cus: Name"
-              sortable
-            />
+            <el-table-column prop="appointment_no" label="Book No." sortable />
+            <el-table-column prop="customer_name" label="Cus: Name" sortable />
             <el-table-column prop="desc" label="Desc" />
             <el-table-column label="Total Price">
               <template #default="scope">
@@ -61,6 +46,15 @@
             <el-table-column prop="created_at" label="Booked Date" sortable />
             <el-table-column label="Actions">
               <template #default="scope">
+                <el-tooltip class="box-item" content="Detail" placement="top">
+                  <el-button
+                    circle
+                    style="margin-bottom: 5px"
+                    @click="handleView(scope.row.id)"
+                  >
+                    <el-icon><View /></el-icon>
+                  </el-button>
+                </el-tooltip>
                 <el-tooltip class="box-item" content="Edit" placement="top">
                   <el-button
                     type="warning"
@@ -107,7 +101,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { router } from "@inertiajs/vue3";
 import debounce from "lodash.debounce";
 import { reactive, toRefs, watch } from "vue";
-import { Plus, Edit, Refresh, Filter, Delete } from "@element-plus/icons-vue";
+import {
+  Plus,
+  Edit,
+  Refresh,
+  Filter,
+  Delete,
+  View,
+} from "@element-plus/icons-vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 
 export default {
@@ -119,6 +120,7 @@ export default {
     Refresh,
     Filter,
     Delete,
+    View,
   },
   setup() {
     const state = reactive({
@@ -144,6 +146,10 @@ export default {
     const onCurrentChange = (val) => {
       state.param.page = val;
       getData();
+    };
+
+    const handleView = (id) => {
+      router.visit(route("admin.bookings.show", id));
     };
 
     const addNew = () => {
@@ -214,6 +220,7 @@ export default {
     return {
       ...toRefs(state),
       addNew,
+      handleView,
       handleEdit,
       handleDelete,
       onSizeChange,

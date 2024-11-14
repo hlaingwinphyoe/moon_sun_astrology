@@ -12,7 +12,7 @@
                             </h1>
                             <h4 class="ls1 mb-10">Successfully Booked.</h4>
                             <p class="mb-30">Wait for the response within  24 hours</p>
-                            <a href="{{ route('welcome') }}" class="butn butn-md butn-bg text-white bg-black radius-30">
+                            <a href="{{ route('bookings.list') }}" class="butn butn-md butn-bg text-white bg-black radius-30">
                                 <span>View Your Bookings</span>
                             </a>
                         </div>

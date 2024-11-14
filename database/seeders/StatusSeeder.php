@@ -20,7 +20,7 @@ class StatusSeeder extends Seeder
             'age' => ['day', 'month', 'year'],
             // 'payment-type' => ['Cash', 'Bank Transfer', 'KPay', 'CBPay', 'AYAPay', 'Wave Money'],
             'transaction' => ['In', 'Out'],
-            'status' => ['Booked', 'Pending', 'Finished', 'Cancelled', 'Incomplete', 'Paid'],
+            'status' => ['Booked', 'Pending', 'Finished', 'Cancelled', 'Incomplete', 'Approved'],
             'order' => ['Ordered', 'Received'],
             // 'weekdays' => ['တနင်္ဂနွေ', 'တနင်္လာ', 'အင်္ဂါ', 'ဗုဒ္ဓဟူး', 'ကြာသပတေး', 'သောကြာ', 'စနေ'],
             'weekdays' => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],

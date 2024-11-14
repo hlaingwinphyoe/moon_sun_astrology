@@ -109,11 +109,14 @@ class FrontController extends Controller
                 ->first();
             $paymentypes = Bank::notDisabled()->get();
             $pendingStatus = Status::isType('status')->where('slug', 'pending')->first();
-
-            if ($appointment->is_paid == 0 && $pendingStatus->id == $appointment->status_id) {
-                return view('appointment.completed', compact('appointment'));
+            if ($appointment) {
+                if ($appointment->is_paid == null && $pendingStatus->id == $appointment->status_id) {
+                    return view('appointment.completed', compact('appointment'));
+                } else {
+                    return view('appointment.booked', compact('appointment', 'paymentypes'));
+                }
             } else {
-                return view('appointment.booked', compact('appointment', 'paymentypes'));
+                return redirect()->route('error');
             }
         } else {
             return redirect()->route('error');
@@ -213,14 +216,7 @@ class FrontController extends Controller
 
             return view('blogs.details', compact('post', 'recentPosts'));
         } else {
-            return view('composables.404');
+            return redirect()->route('error');
         }
-    }
-
-    public function bookingsList()
-    {
-        $user = Auth::user();
-
-        dd($user);
     }
 }

@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AppointmentController extends Controller
 {
-    public function bookingsList()
+    public function index()
     {
         $pageSize = request('page_size') ?: 10;
         $bookings = Appointment::query()
@@ -34,5 +35,39 @@ class AppointmentController extends Controller
         return Inertia::render('Admin/Booking/Index', [
             'bookings' => $bookings
         ]);
+    }
+
+    public function show($id)
+    {
+        $booking = Appointment::with(['user.gender', 'user.weekday', 'appointment_packages.package'])
+            ->findOrFail($id);
+        // dd($booking);
+        return Inertia::render('Admin/Booking/Show', [
+            'booking' => $booking
+        ]);
+    }
+
+    public function update($id, $type)
+    {
+        $booking = Appointment::findOrFail($id);
+        $incomplete = Status::isType('status')->where('slug', 'incomplete')->first();
+        $approved = Status::isType('status')->where('slug', 'approved')->first();
+        $finished = Status::isType('status')->where('slug', 'finished')->first();
+        if ($type == 'incomplete') {
+            $booking->update([
+                'status_id' => $incomplete->id,
+            ]);
+        } else if ($type == 'approved') {
+            $booking->update([
+                'status_id' => $approved->id,
+                'is_paid' => true
+            ]);
+        } else {
+            $booking->update([
+                'status_id' => $finished->id,
+            ]);
+        }
+
+        return redirect()->route('admin.bookings.index')->with('success', 'Success');
     }
 }

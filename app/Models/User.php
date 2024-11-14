@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -34,6 +35,7 @@ class User extends Authenticatable
         'social_link',
         'day_id',
         'gender_id',
+        'weekday_id',
         'role_id',
         'email_verified_at',
         'profile_photo_path',
@@ -75,9 +77,24 @@ class User extends Authenticatable
         ];
     }
 
+    public function gender()
+    {
+        return $this->belongsTo(Status::class, 'gender_id');
+    }
+
+    public function weekday()
+    {
+        return $this->belongsTo(Status::class, 'weekday_id');
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 
     // helper function
@@ -126,8 +143,5 @@ class User extends Authenticatable
     }
 
     // helper function
-    public function getRedirectRoute(): string
-    {
-        
-    }
+    public function getRedirectRoute(): string {}
 }

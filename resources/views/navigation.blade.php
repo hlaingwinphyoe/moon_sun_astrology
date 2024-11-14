@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="page-contact.html">
+                    <a class="nav-link" href="{{ route('welcome') }}#contact">
                         <span class="rolling-text">Contact</span>
                     </a>
                 </li>
@@ -53,6 +53,7 @@
                         <div class="dropdown-menu">
                             @admin
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                <a class="dropdown-item" href="{{ route('profile.bookings.list') }}">Booking Lists</a>
                             @endadmin
                             <div style="cursor: pointer">
                                 <form method="POST" action="{{ route('logout') }}">
@@ -80,6 +81,7 @@
                     <div class="dropdown-menu">
                         @admin
                             <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a class="dropdown-item" href="{{ route('profile.bookings.list') }}">Booking Lists</a>
                         @endadmin
                         <div style="cursor: pointer">
                             <form method="POST" action="{{ route('logout') }}">
