@@ -31,7 +31,7 @@
                                             Transaction No.
                                         </label>
                                         <input value="{{ old('transaction_no') }}" id="form_transaction_no" type="text"
-                                            name="transaction_no" placeholder="9999999999999999" required>
+                                            name="transaction_no" placeholder="9999999999999999">
                                         @error('transaction_no')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
