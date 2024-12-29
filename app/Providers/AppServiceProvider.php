@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
             return Auth::check() && Auth::user()->role->slug === 'admin' || Auth::user()->role->slug === 'astrologer' || Auth::user()->role->slug === 'developer';
         });
 
-        // $system_info = SystemInfo::with('phones')->first();
+        $system_info = SystemInfo::with('phones')->first();
 
-        // View::share('system_info', $system_info);
+        View::share('system_info', $system_info);
     }
 }
