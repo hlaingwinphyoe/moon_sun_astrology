@@ -88,8 +88,8 @@
                     <div class="dropdown-menu">
                         @admin
                             <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                            <a class="dropdown-item" href="{{ route('profile.bookings.list') }}">Booking Lists</a>
                         @endadmin
+                        <a class="dropdown-item" href="{{ route('profile.bookings.list') }}">Booking Lists</a>
                         <div style="cursor: pointer">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

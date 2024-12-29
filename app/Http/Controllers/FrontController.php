@@ -94,7 +94,7 @@ class FrontController extends Controller
 
             DB::commit();
 
-            return redirect()->route('booked', ['appointment_id' => $appointment->appointment_no]);
+            return redirect()->route('booked.completed', ['appointment_id' => $appointment->appointment_no]);
         } catch (\Exception $e) {
             DB::rollBack();
             // do error page

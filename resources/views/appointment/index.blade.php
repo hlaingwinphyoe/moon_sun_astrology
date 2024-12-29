@@ -72,7 +72,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group mb-30">
                                     <label for="form_weekday" class="form-label">
-                                        Weekdays
+                                        Birth Day (Eg: Monday, Tuesday ...)
                                     </label>
                                     <select id="form_weekday" name="weekday" required>
                                         @forelse ($weekdays as $weekday)
