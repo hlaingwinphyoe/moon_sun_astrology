@@ -1,7 +1,6 @@
 @extends('layouts.guest')
 
 @section('content')
-    <!-- ==================== Start Slider ==================== -->
 
     <header class="page-header section-padding pb-0 header-creative">
         <div class="container mt-80">
@@ -17,10 +16,6 @@
         <div class="bg-pattern bg-img" data-background="{{ asset('imgs/bg/bg-1.png') }}">
         </div>
     </header>
-
-    <!-- ==================== End Slider ==================== -->
-
-    <!-- ==================== Start Blog ==================== -->
 
     <section class="contact-crev section-padding sub-bg">
         <form id="appointment-form" method="post" action="{{ route('make-appointment.store') }}">
@@ -167,7 +162,4 @@
 
     </section>
 
-
-
-    <!-- ==================== End Blog ==================== -->
 @endsection

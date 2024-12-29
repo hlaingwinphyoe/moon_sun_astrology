@@ -8,6 +8,7 @@ use App\Models\Bank;
 use App\Models\Package;
 use App\Models\Post;
 use App\Models\Status;
+use App\Models\SystemInfo;
 use App\Models\Zodiac;
 use App\Services\AppointmentService;
 use App\Services\MediaService;
@@ -52,7 +53,7 @@ class FrontController extends Controller
         return view('front', [
             'packages' => $packages,
             'posts' => $posts,
-            'zodiacs' => $zodiacs,
+            'zodiacs' => $zodiacs
         ]);
     }
 

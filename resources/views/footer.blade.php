@@ -8,7 +8,7 @@
                             <h6>Address</h6>
                         </div>
                         <div class="text">
-                            <p>Germany — 785 15h Street, Office 478 Berlin, De 81566</p>
+                            <p>{{ $system_info->address }}</p>
                         </div>
                     </div>
                 </div>
@@ -19,11 +19,13 @@
                         </div>
                         <div class="text">
                             <p class="mb-10">
-                                <a href="#0">hello@design.com</a>
+                                <a href="#0">{{ $system_info->email }}</a>
                             </p>
-                            <h5>
-                                <a href="#">+1 840 841 25 69</a>
-                            </h5>
+                            <h6>
+                                @foreach ($system_info->phones as $phone)
+                                    <a class="me-2" href="tel:{{ $phone->phone }}">{{ $phone->phone }}</a>
+                                @endforeach
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -85,7 +87,8 @@
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a class="text-dark nav-link" href="{{ route('packages.list') }}" role="button">
+                                        <a class="text-dark nav-link" href="{{ route('packages.list') }}"
+                                            role="button">
                                             Package
                                         </a>
                                     </li>

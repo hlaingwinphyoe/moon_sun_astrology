@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="info-area flex mt-20 pb-20">
-                    <div>
+                    {{-- <div>
                         <div class="tags flex">
                             <div class="valign">
                                 <span>Tags :</span>
@@ -87,16 +87,21 @@
                                 <a href="blog-classic.html">Ravo</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="ml-auto">
                         <div class="share-icon flex">
                             <div class="valign">
                                 <span>Share :</span>
                             </div>
                             <div>
-                                <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                                <a href="https://www.facebook.com/sharer.php?u={{ route('blogs.details', $post->slug) }}"
+                                    target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.x.com/share?url={{ route('blogs.details', $post->slug) }}"
+                                    target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

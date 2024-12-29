@@ -55,7 +55,7 @@
                     <el-icon><View /></el-icon>
                   </el-button>
                 </el-tooltip>
-                <el-tooltip class="box-item" content="Edit" placement="top">
+                <!-- <el-tooltip class="box-item" content="Edit" placement="top">
                   <el-button
                     type="warning"
                     circle
@@ -74,7 +74,7 @@
                   >
                     <el-icon><Delete /></el-icon>
                   </el-button>
-                </el-tooltip>
+                </el-tooltip> -->
               </template>
             </el-table-column>
           </el-table>
@@ -158,38 +158,6 @@ export default {
       state.showDialog = true;
     };
 
-    const handleEdit = (row) => {
-      state.dialog.dialogTitle = "Edit";
-      state.dialog.dialogData = JSON.parse(JSON.stringify(row));
-      state.showDialog = true;
-    };
-
-    const handleDelete = (id) => {
-      ElMessageBox.confirm("Are you sure you want to delete?", "Warning", {
-        confirmButtonText: "Confirm",
-        cancelButtonText: "Cancel",
-        type: "warning",
-        draggable: true,
-        closeOnClickModal: false,
-      })
-        .then(() => {
-          router.delete(route("admin.bookings.destroy", id), {
-            onSuccess: (page) => {
-              ElMessage.success(page.props.flash.success);
-            },
-            onError: (page) => {
-              ElMessage.error(page.props.flash.error);
-            },
-          });
-        })
-        .catch(() => {
-          ElMessage({
-            type: "info",
-            message: "Cancel",
-          });
-        });
-    };
-
     watch(
       () => state.param.search,
       debounce(() => {
@@ -221,8 +189,6 @@ export default {
       ...toRefs(state),
       addNew,
       handleView,
-      handleEdit,
-      handleDelete,
       onSizeChange,
       onCurrentChange,
       closeDialog,

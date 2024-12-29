@@ -15,7 +15,7 @@
     </span>
     {{-- <p class="fz-14">Creating a higher spacing and how people move through a unique.</p> --}}
     <div class="underline">
-        <a href="page-about.html" class="mt-20 ls1 fz-12 sub-title">Book Now <i class="ml-5">
+        <a href="{{ route('make-appointment') }}" class="mt-20 ls1 fz-12 sub-title">Book Now <i class="ml-5">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

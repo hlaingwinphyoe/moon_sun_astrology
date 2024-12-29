@@ -122,7 +122,7 @@
             <el-dropdown-item>
               <Link
                 class="flex items-center gap-2"
-                :href="route('admin.profile.edit')"
+                :href="route('profile.show')"
               >
                 <el-icon><Tools /></el-icon>
                 <span>Profile</span>

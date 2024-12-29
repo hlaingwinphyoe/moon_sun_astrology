@@ -11,8 +11,8 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\SystemInfoController;
 use App\Http\Controllers\Admin\ZodiacController;
-use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -23,6 +23,14 @@ Route::middleware([
 ])->prefix('admin')->name('admin.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
+    });
+
+    Route::controller(SystemInfoController::class)->prefix('/system-infos')->name('system-infos.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::patch('/update-info', 'updateInfo')->name('update');
+        Route::patch('/{info}/add-phone', 'addPhone')->name('addPhone');
+        Route::delete('/{info}/delete-phone/{phone}', 'deletePhone')->name('deletePhone');
+        // Route::patch('/{info}/upload-logo', 'uploadLogo')->name('uploadLogo');
     });
 
     // Bookings
@@ -59,11 +67,11 @@ Route::middleware([
         Route::delete('/readallnotifications', 'readall')->name('readallnotifications');
     });
 
-    Route::controller(ProfileController::class)->name('profile.')->group(function () {
-        Route::get('/profile', 'edit')->name('edit');
-        Route::patch('/profile', 'update')->name('update');
-        Route::delete('/profile', 'destroy')->name('destroy');
-    });
+    // Route::controller(ProfileController::class)->name('profile.')->group(function () {
+    //     Route::get('/profile', 'edit')->name('edit');
+    //     Route::patch('/profile', 'update')->name('update');
+    //     Route::delete('/profile', 'destroy')->name('destroy');
+    // });
 
     // staff & roles
     Route::resource('staffs', StaffController::class)->except(['create', 'show', 'edit']);

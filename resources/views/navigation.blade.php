@@ -71,6 +71,13 @@
                 @endauth
             </ul>
         </div>
+        @guest
+            <div class="d-none d-lg-block">
+                <a href="{{ route('login') }}" class="butn py-2 px-4 butn-bord radius-30">
+                    <span class="fz-13">Login &nbsp; <i class="fas fa-long-arrow-alt-right"></i></span>
+                </a>
+            </div>
+        @endguest
         @auth
             <ul class="navbar-nav d-none d-lg-block">
                 <li class="nav-item dropdown">

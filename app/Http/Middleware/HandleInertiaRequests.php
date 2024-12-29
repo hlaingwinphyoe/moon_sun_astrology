@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\SystemInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Inertia\Middleware;
@@ -51,6 +52,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'system_info' => SystemInfo::with('phones')->first(),
             'notifications' => $notifications,
             'noti_count' => $count,
             'current_route' => $route,
