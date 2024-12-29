@@ -53,7 +53,7 @@ class FrontController extends Controller
         return view('front', [
             'packages' => $packages,
             'posts' => $posts,
-            'zodiacs' => $zodiacs
+            'zodiacs' => $zodiacs,
         ]);
     }
 
