@@ -58,6 +58,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('provider_token')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('disabled')->default(0);
             $table->timestamps();
