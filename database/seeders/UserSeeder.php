@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'type' => 'Staff'
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'name' => 'kiran',
             'phone' => '0944912812',
             'email' => 'dev.hlaingwinphyoe@gmail.com',
@@ -52,18 +52,10 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password-123'),
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'Shin',
-            'phone' => '0987654321',
-            'email' => 'shin@gmail.com',
-            'role_id' => $astrologer->id,
-            'password' => Hash::make('password-123'),
-        ]);
-
-        DB::table('users')->insert([
-            'name' => 'Lwin',
-            'phone' => '09483738732',
-            'email' => 'lwin@gmail.com',
+        User::create([
+            'name' => 'Shin Lwin Thant',
+            'phone' => '0660857579',
+            'email' => 'shinthant234223@gmail.com',
             'role_id' => $astrologer->id,
             'password' => Hash::make('password-123'),
         ]);
