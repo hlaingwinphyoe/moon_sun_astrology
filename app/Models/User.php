@@ -41,6 +41,9 @@ class User extends Authenticatable
         'profile_photo_path',
         'disabled',
         'password',
+        'provider',
+        'provider_id',
+        'provider_token',
     ];
 
     /**
